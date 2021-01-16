@@ -1,0 +1,47 @@
+
+.a-row {
+    width: 100%;
+}
+.a-spacing-top-base {
+    margin-top: 14px!important;
+}
+.a-size-medium {
+    font-size: 17px!important;
+    line-height: 1.255!important;
+}
+table.a-keyvalue {
+    margin-bottom: 22px;
+    border-bottom: 1px solid #e7e7e7;
+}
+.prodDetTable {
+    table-layout: fixed;
+    border-spacing: 0;
+    padding: 0;
+	width: 100%;
+}
+
+.prodDetSectionEntry {
+    width: 50%!important;
+    white-space: normal;
+    word-wrap: break-word;
+}
+table.a-keyvalue td, table.a-keyvalue th {
+    padding: 7px 14px 6px;
+}
+tr:first-child td, tr:first-child th {
+    padding-top: 0;
+}
+table.a-keyvalue td, table.a-keyvalue th {
+    border-top: 1px solid #e7e7e7;
+}
+table.a-keyvalue th {
+    background-color: #f3f3f3;
+    color: #111;
+    font-weight: 400;
+}
+table.a-keyvalue td {
+    color: #333;
+}
+.a-color-secondary, .a-color-tertiary {
+    color: #565959!important;
+}

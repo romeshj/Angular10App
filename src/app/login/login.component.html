@@ -1,0 +1,18 @@
+<div class="col-md-12">
+	<form id="loginForm" >
+		<div class="input">
+			<label>Username</label>
+			<input type="text" [(ngModel)]="username" name="username">
+		</div>
+		<div class="input">
+			<label>Password</label>
+			<input type="password" [(ngModel)]="password" name="password">
+		</div>
+		<div class="input">
+			<button  class="btn btn-login btn-default" (click)="loginFn()">
+                 <span class="glyphicon glyphicon-log-in"></span> Login
+            </button>
+		</div>		
+		<div><a routerLink="/register">Register</a> | <a routerLink="/forgotpassword">Forgot Password</a></div>
+	</form>
+</div>

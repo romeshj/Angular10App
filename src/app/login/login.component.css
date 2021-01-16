@@ -1,0 +1,27 @@
+div.input{
+position:relative;
+margin: 30px;
+}
+
+div.input label{
+position:absolute;
+top:0;
+transform:translateY(-50%);
+left:10px;
+background:#ccc;
+padding:5px 2px;
+}
+
+div.input label{
+position:absolute;
+top:0;
+transform:translateY(-50%);
+left:10px;
+background:#ccc;
+padding:5px 2px;
+}
+
+div.input input{
+	padding:10px;
+	font-size: 25px;
+}

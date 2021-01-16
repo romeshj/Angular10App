@@ -1,0 +1,60 @@
+<div class="card m-3">
+    <h5 class="card-header">Angular 10 Reactive Form Validation</h5>
+    <div class="card-body">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+			<div class="row">
+				<div class="form-group col-md-5">
+					<label>First Name</label>
+					<input type="text" name="firstName" class="form-control" formControlName="firstName"  [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+					<div *ngIf="(submitted || isValidInput('firstName')) && f.firstName.errors?.required" class="error-text">First Name is Required</div>
+					<div *ngIf="isValidInput('firstName') && f.firstName.errors?.invalidUserName" class="error-text">Only characters are allowed</div>
+				</div>
+				<div class="form-group col-md-5">
+					<label>Last Name</label>
+					<input type="text" name="lastName" class="form-control"  formControlName="lastName"  [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
+					<div *ngIf="(submitted || isValidInput('lastName')) && f.lastName.errors?.required" class="error-text">Last Name is Required</div>
+					<div *ngIf="isValidInput('lastName') && f.lastName.errors?.invalidUserName" class="error-text">Only characters are allowed</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label>Password</label>
+					<input type="password" name="password" class="form-control"  formControlName="password"  [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+					<div *ngIf="(submitted || isValidInput('password')) && f.password.errors?.required" class="error-text">Password is Required</div>
+				</div>
+            </div>
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label>Confirm Password</label>
+					<input type="password" name="confirmPassword" class="form-control"  formControlName="confirmPassword"  [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }">
+					<div *ngIf="(submitted || isValidInput('confirmPassword')) && f.confirmPassword.errors?.required" class="error-text">Confirm Password is Required</div>
+					<div *ngIf="isValidInput('confirmPassword') && f.confirmPassword.errors?.passwordMismatch" class="error-text">Passwords must match</div>
+					
+				</div>
+            </div>
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label>Number</label>
+					<input type="text" name="numVal" class="form-control" formControlName="numVal">
+					<div *ngIf="isValidInput('numVal') && f.numVal.errors?.gte" class="error-text">The number should be greater than {{f.numVal.errors.requiredValue}}</div>
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-5">
+					<label>User Name</label>
+					<input type="text" name="userName" class="form-control" formControlName="userName"  [ngClass]="{ 'is-invalid': submitted && f.userName.errors }">
+					<div *ngIf="(submitted || isValidInput('userName')) && f.userName.errors?.required" class="error-text">User Name is Required</div>
+					<div *ngIf="isValidInput('userName') && f.userName.errors?.userNameNotAvailable" class="error-text">User Name is not available. Enter the user name from the lists <ul>
+						<li *ngFor="let u of userLists">{{u}}</li>
+					</ul></div>
+				</div>
+            </div>
+			<div class="text-center">
+                <button class="btn btn-primary mr-1">Register</button>
+                <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+

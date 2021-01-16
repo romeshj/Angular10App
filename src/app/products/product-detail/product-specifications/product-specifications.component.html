@@ -1,0 +1,17 @@
+<div class="card">
+<div class="a-row a-spacing-top-base" style="margin: 20px 10px">
+	<div class="a-column a-span6">
+		<div class="a-row">
+			<h1 class="a-size-medium">{{productName}} Specifications</h1>
+			<table class="a-keyvalue prodDetTable">
+				<tbody>
+					<tr *ngFor="let s of prdSpecs">
+						<th class="a-color-secondary a-size-base prodDetSectionEntry">{{s.label}}</th>
+						<td class="a-size-base">{{s.value}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+</div>

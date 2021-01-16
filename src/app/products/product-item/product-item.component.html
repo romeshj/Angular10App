@@ -1,0 +1,12 @@
+
+  <div class="card" style="width:300px;  height : 400px;">
+    <div style="display: flex;
+		justify-content: center;
+		align-items: center;"><img class="card-img-top" [src]="product.productImagePath" [alt]="product.productName" style="width:100px; height: 200px;"></div>
+    <div class="card-body text-center">
+      <h4 class="card-title">Product ID : {{product.productID}}</h4>
+	  <p class="card-text">Product Name : <a [routerLink]="[product.productID]">{{product.productName}}</a></p>
+	  <p class="card-text">Product Price : {{product.productPrice}}</p>
+    </div>
+  </div>
+

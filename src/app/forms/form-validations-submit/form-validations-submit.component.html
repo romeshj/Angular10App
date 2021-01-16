@@ -1,0 +1,127 @@
+<div class="card m-3">
+    <h5 class="card-header">Angular 10 Template-Driven Form Validation</h5>
+    <div class="card-body">
+        <form name="form"  novalidate (ngSubmit)="submitForm(f)" #f="ngForm">
+			<div class="row">
+				<div class="form-group col-md-2">
+					<label>Title</label>
+					<select name="title" class="form-control" ngModel #title="ngModel" [ngClass]="{ 'is-invalid': f.submitted && title.invalid }" required>
+						<option value=""></option>
+						<option value="Mr">Mr</option>
+						<option value="Mrs">Mrs</option>
+						<option value="Miss">Miss</option>
+						<option value="Ms">Ms</option>
+					</select>
+					<div *ngIf="(title.invalid && f.submitted) || (title.invalid && title.touched)" class="error-text">
+						<div *ngIf="title.errors.required">Title is Required</div>
+					</div>
+				</div>
+				<div class="form-group col-md-5">
+					<label>First Name</label>
+					<input type="text" name="firstName" class="form-control" ngModel #firstName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid }" required pattern="^[a-zA-Z]+$">
+					<div *ngIf="(firstName.invalid && f.submitted) || (firstName.invalid && firstName.touched)" class="error-text">
+						<div *ngIf="firstName.errors.required">First Name is Required</div>
+						<div *ngIf="firstName.errors.pattern">Only characters are allowed</div>
+					</div>
+				</div>
+				<div class="form-group col-md-5">
+					<label>Last Name</label>
+					<input type="text" name="lastName" class="form-control" ngModel #lastName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && lastName.invalid }" required pattern="^[a-zA-Z]+$">
+					<div *ngIf="(lastName.invalid && f.submitted) || (lastName.invalid && lastName.touched)" class="error-text">
+						<div *ngIf="lastName.errors.required">Last Name is Required</div>
+						<div *ngIf="lastName.errors.pattern">Only characters are allowed</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label>Email</label>
+					<input type="text" name="email" class="form-control" ngModel #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+					<div *ngIf="(email.invalid && f.submitted) || (email.invalid && email.touched)" class="error-text">
+						<div *ngIf="email.errors.required">Email is Required</div>
+						<div *ngIf="email.errors.email">Please Enter Valid Email</div>
+					</div>
+				</div>
+            </div>
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label>Password</label>
+					<input type="password" name="password" class="form-control" ngModel #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required minlength="6">
+					<div *ngIf="(password.invalid && f.submitted) || (password.invalid && password.touched)" class="error-text">
+						<div *ngIf="password.errors.required">Password is Required</div>
+						<div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+					</div>
+				</div>
+            </div>
+			<div class="form-group">
+				<div class="form-check col-md-12">
+					<input type="checkbox" name="acceptTerms" class="form-check-input" ngModel #acceptTerms="ngModel" [ngClass]="{ 'is-invalid': f.submitted && acceptTerms.invalid }" required>
+					<label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>
+					<div *ngIf="(acceptTerms.invalid && f.submitted) || (acceptTerms.invalid && acceptTerms.touched)" class="error-text">
+						<div *ngIf="acceptTerms.errors.required">Accept Ts & Cs is Required</div>
+					</div>
+				</div>
+            </div>
+			<div class="row">
+			    <legend class="col-form-label col-md-2 pt-0">Gender</legend>
+				<div class="col-md-10">
+				    <div class="form-check">
+					  <input class="form-check-input" type="radio" value="male" name="gender" ngModel #gender="ngModel" [ngClass]="{ 'is-invalid': f.submitted && gender.invalid }" required>
+					  <label class="form-check-label">
+						Male
+					  </label>
+					</div>
+					<div class="form-check">
+					  <input class="form-check-input" type="radio" value="female" name="gender" ngModel #gender="ngModel" [ngClass]="{ 'is-invalid': f.submitted && gender.invalid }" required>
+					  <label class="form-check-label">
+						Female
+					  </label>
+					</div>
+					<div *ngIf="(gender.invalid && f.submitted) || (gender.invalid && gender.touched)" class="error-text">
+						<div *ngIf="gender.errors.required">Gender is Required</div>
+					</div>
+				</div>
+			</div>
+			
+			<div ngModelGroup="address" #address="ngModelGroup">
+				<div class="row">
+					<div class="form-group col-md-12">
+						<label>City</label>
+						<input type="text" name="city" class="form-control" ngModel #city="ngModel" [ngClass]="{ 'is-invalid': f.submitted && city.invalid }" required pattern="^[a-zA-Z- ]+$">
+						<div *ngIf="(city.invalid && f.submitted) || (city.invalid && city.touched)" class="error-text">
+							<div *ngIf="city.errors.required">City is Required</div>
+							<div *ngIf="city.errors.pattern">Only characters, space , hyphen are allowed</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-md-12">
+						<label>Street</label>
+						<input type="text" name="street" class="form-control" ngModel #street="ngModel" [ngClass]="{ 'is-invalid': f.submitted && street.invalid }" required pattern="^[a-zA-Z0-9- ]+$">
+						<div *ngIf="(street.invalid && f.submitted) || (street.invalid && street.touched)" class="error-text">
+							<div *ngIf="street.errors.required">Street is Required</div>
+							<div *ngIf="street.errors.pattern">Only characters, numbers, space , hyphen are allowed </div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-md-12">
+						<label>Pin Code</label>
+						<input type="text" name="zipcode" class="form-control" ngModel #zipcode="ngModel" [ngClass]="{ 'is-invalid': f.submitted && zipcode.invalid }" required pattern="^[0-9]{5}$" maxlength="6">
+						<div *ngIf="(zipcode.invalid && f.submitted) || (zipcode.invalid && zipcode.touched)" class="error-text">
+							<div *ngIf="zipcode.errors.required">Pin Code is Required</div>
+							<div *ngIf="zipcode.errors.pattern">Only Numbers are allowed</div>
+						</div>
+					</div>
+				</div>				
+				<div *ngIf="address.invalid && f.submitted" class="error-text">Address is invalid!</div>
+				
+			</div>			
+            <div class="text-center">
+                <button class="btn btn-primary mr-1">Register</button>
+                <button class="btn btn-secondary" type="reset">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+

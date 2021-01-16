@@ -1,0 +1,133 @@
+<div class="card m-3">
+    <h5 class="card-header">Angular 10 Reactive Form Validation</h5>
+    <div class="card-body">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+			<div class="row">
+				<div class="form-group col-md-2">
+					<label>Title</label>
+					<select name="title" class="form-control" formControlName="title" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+						<option value=""></option>
+						<option value="Mr">Mr</option>
+						<option value="Mrs">Mrs</option>
+						<option value="Miss">Miss</option>
+						<option value="Ms">Ms</option>
+					</select>
+					<div *ngIf="(submitted && isInputRequired('title')) && f.title.errors?.required" class="error-text">Title is Required</div>
+				</div>
+				<div class="form-group col-md-5">
+					<label>First Name</label>
+					<input type="text" name="firstName" class="form-control" formControlName="firstName"  [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+					<div *ngIf="(submitted && isInputRequired('firstName')) && f.firstName.errors?.required" class="error-text">First Name is Required</div>
+					<div *ngIf="(submitted && isValidInput('firstName')) && f.firstName.errors?.pattern" class="error-text">Only characters are allowed</div>
+				</div>
+				<div class="form-group col-md-5">
+					<label>Last Name</label>
+					<input type="text" name="lastName" class="form-control"  formControlName="lastName"  [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
+					<div *ngIf="(submitted && isInputRequired('lastName')) && f.lastName.errors?.required" class="error-text">Last Name is Required</div>
+					<div *ngIf="(submitted && isValidInput('lastName')) && f.lastName.errors?.pattern" class="error-text">Only characters are allowed</div>
+				</div>
+			</div>
+			<div class="row">			    
+				<div class="form-group col-md-6">
+                    <label>Date of Birth</label>
+                    <input type="date" formControlName="dob" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" />
+					<div *ngIf="(submitted && isInputRequired('dob')) && f.dob.errors?.required" class="error-text">Date of Birth is Required</div>
+					<div *ngIf="(submitted && isValidInput('dob')) && f.dob.errors?.pattern" class="error-text">Date of Birth must be a valid date in the format YYYY-MM-DD</div>
+                </div>
+				<div class="form-group col-md-6">
+					<label>Email</label>
+					<input type="text" name="email" class="form-control"  formControlName="email"  [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+					<div *ngIf="(submitted && isInputRequired('email')) && f.email.errors?.required" class="error-text">Email is Required</div>
+					<div *ngIf="(submitted && isValidInput('email')) && f.email.errors?.email" class="error-text">Please Enter Valid Email</div>
+				</div>
+            </div>
+			
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label>Password</label>
+					<input type="password" name="password" class="form-control"  formControlName="password"  [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+					<div *ngIf="(submitted && isInputRequired('password')) && f.password.errors?.required" class="error-text">Password is Required</div>
+				</div>
+            </div>
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label>Confirm Password</label>
+					<input type="password" name="confirmPassword" class="form-control"  formControlName="confirmPassword"  [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }">
+					<div *ngIf="(submitted && isInputRequired('confirmPassword')) && f.confirmPassword.errors?.required" class="error-text">Confirm Password is Required</div>
+					<div *ngIf="(submitted && isValidInput('confirmPassword')) && f.confirmPassword.errors?.mustMatch" class="error-text">Passwords must match</div>
+					
+				</div>
+            </div>
+			
+			<div class="form-group">
+				<div class="form-check col-md-12">
+					<input type="checkbox" name="acceptTerms" class="form-check-input"  formControlName="acceptTerms">				
+					<label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>
+					<div *ngIf="(submitted && isInputRequired('acceptTerms')) && f.acceptTerms.errors?.required" class="error-text">Accept Ts & Cs is Required</div>					
+				</div>
+            </div>
+			<div class="row">
+			    <legend class="col-form-label col-md-2 pt-0">Gender</legend>
+				<div class="col-md-10">
+				    <div class="form-check">
+					  <input class="form-check-input" type="radio" value="male" name="gender" formControlName="gender">
+					  <label class="form-check-label">
+						Male
+					  </label>
+					</div>
+					<div class="form-check">
+					  <input class="form-check-input" type="radio" value="female" name="gender" formControlName="gender">
+					  <label class="form-check-label">
+						Female
+					  </label>
+					</div>
+					<div *ngIf="(submitted && isInputRequired('gender')) && f.gender.errors?.required" class="error-text">Gender is Required</div>
+				</div>
+			</div>
+			
+			<div formGroupName="address">
+				<div class="row">
+					<div class="form-group col-md-12">
+						<label>City</label>
+						<input type="text" name="city" class="form-control" formControlName="city">
+						<div *ngIf="(submitted && isAddressInputRequired('city')) && fa.city.errors?.required" class="error-text">City is Required</div>
+						<div *ngIf="(submitted && isAddressValidInput('city')) && fa.city.errors?.pattern" class="error-text">Only characters, space , hyphen are allowed</div>
+					</div>
+				</div>				
+				<div class="row">
+					<div class="form-group col-md-12">
+						<label>Street</label>
+						<input type="text" name="street" class="form-control" formControlName="street">
+						<div *ngIf="(submitted && isAddressInputRequired('street')) && fa.street.errors?.required" class="error-text">Street is Required</div>
+						<div *ngIf="(submitted && isAddressValidInput('street')) && fa.street.errors?.pattern" class="error-text">Only characters, numbers, space , hyphen are allowed</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-md-12">
+						<label>Pin Code</label>
+						<input type="text" name="zipcode" class="form-control" formControlName="zipcode">
+						<div *ngIf="(submitted && isAddressInputRequired('zipcode')) && fa.zipcode.errors?.required" class="error-text">Pin Code is Required</div>
+						<div *ngIf="(submitted && isAddressValidInput('zipcode')) && fa.zipcode.errors?.pattern" class="error-text">Only Numbers are allowed</div>
+					</div>
+				</div>
+				<div *ngIf="submitted && (this.userForm.get('address').status == 'INVALID')" class="error-text">Address is invalid!</div>
+			</div>
+
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label>Number</label>
+					<input type="text" name="numVal" class="form-control" formControlName="numVal">
+					<div *ngIf="(submitted && isValidInput('numVal')) && f.numVal.errors?.gte" class="error-text">The number should be greater than {{f.numVal.errors.requiredValue}}</div>
+					
+				</div>
+			</div>
+            <div class="text-center">
+                <button class="btn btn-primary mr-1">Register</button>
+                <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

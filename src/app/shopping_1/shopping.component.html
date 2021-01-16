@@ -1,0 +1,15 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<app-header 
+				(featureSelected) = "loadFeature($event)"
+			></app-header>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<app-recipes *ngIf="featureSection === 'Recipes'"></app-recipes>
+			<app-shopping-list *ngIf="featureSection === 'ShoppingLists'"></app-shopping-list>
+		</div>
+	</div>
+</div>
